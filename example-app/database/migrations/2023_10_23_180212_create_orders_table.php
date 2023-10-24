@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('password_reset_tokens', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('image');
@@ -21,18 +21,18 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->enum('role',[
                 'pandding',
-                'not accepted',
+                'not-accepted',
                 'accepted',
             ]);
-
+            $table->timestamps();
+        });
     }
-    );
-}
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('order');
+        Schema::dropIfExists('orders');
     }
 };

@@ -9,6 +9,8 @@ class OrderModel extends Model
 {
     use HasFactory;
 
+    // php artisan make:model Order -m
+
     protected $fillable = [
         'description',
         'image',
