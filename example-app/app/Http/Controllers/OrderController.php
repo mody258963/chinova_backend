@@ -16,7 +16,7 @@ class OrderController extends Controller
     }
 
     public function create(){
-        return view('create');
+        return view('dashboard.posts.create-post');
     }
     public function store(Request $request){
         $user = Auth::user();

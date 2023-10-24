@@ -20,3 +20,8 @@ Route::get('/', function () {
 
 Route::get('/posts', [OrderController::class,'index'])->name('posts.index');
 Route::get('/post-edit/{post}',[OrderController::class,'edit'])->name('post.edit');
+Route::get('/posts/create-post',[OrderController::class,'create'])->name('create-post');
+Route::post('/posts/store-post',[OrderController::class,'store'])->name('store.post');
+Route::get('/delete-post/{id}',[OrderController::class,'delete'])->name('delete.post');
+Route::get('/posts/edit-post/{post}',[OrderController::class,'edit'])->name('edit.post');
+Route::post('/posts/update-post',[OrderController::class,'update'])->name('update.post');
