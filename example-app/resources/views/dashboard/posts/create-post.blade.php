@@ -15,7 +15,24 @@
                     <textarea type="text" class="form-control" id="description" name="description" placeholder="Post description"></textarea>
                      <p>@error('description') @enderror</p>
                 </div>
-               
+                <div class="card-body" >
+                <div class="form-group">
+                    <label for="title">title</label>
+                    <textarea type="text" class="form-control" id="title" name="title" placeholder="Post title"></textarea>
+                     <p>@error('description') @enderror</p>
+                </div>
+                <div class="card-body" >
+                <div class="form-group">
+                    <label for="description">price</label>
+                    <textarea type="number" class="form-control" id="price" name="price" placeholder="Post price"></textarea>
+                     <p>@error('price') @enderror</p>
+                </div>
+                <div class="card-body" >
+                <div class="form-group">
+                    <label for="wieght">wieght</label>
+                    <textarea type="number" class="form-control" id="wieght" name="wieght" placeholder="Post wieght"></textarea>
+                     <p>@error('wieght') @enderror</p>
+                </div>
                 <div class="form-group" >
                     <label for="exampleInputFile">Image</label>
                     <div class="input-group">

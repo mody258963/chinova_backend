@@ -20,12 +20,15 @@ class OrderController extends Controller
     }
     public function store(Request $request){
         $user = Auth::user();
-        if(!$user){
+        if($user){
             return abort(403);
         }
        $data =  $request->validate([
             'description' => 'required|max:1255|min:3|string',
+            'title'=> 'required|max:1255|min:3|string',
             'image' => 'image|required',
+            'price'=> 'required|max:1255|min:1|int',
+            'wieght'=> 'required|max:1255|min:1|int',
         ]);
 
         $post = Order::create($data);
