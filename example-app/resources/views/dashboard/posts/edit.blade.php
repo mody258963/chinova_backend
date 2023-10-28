@@ -16,7 +16,28 @@
                     <textarea  type="text" class="form-control" id="description" name="description" placeholder="Post description">{{$post->description}}</textarea>
                      <p>@error('description') @enderror</p>
                 </div>
+                <div class="card-body" >
+                <div class="form-group">
+                    <label for="description">title</label>
+                    <textarea  type="text" class="form-control" id="title" name="title" placeholder="Post title">{{$post->title}}</textarea>
+                     <p>@error('description') @enderror</p>
+                </div>
                
+                <div class="card-body" >
+                <div class="form-group">
+                    <label for="description">price</label>
+                    <textarea  type="number" class="form-control" id="price" name="price" placeholder="Post price">{{$post->price}}</textarea>
+                     <p>@error('description') @enderror</p>
+                </div>
+               
+                <div class="card-body" >
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea  type="number" class="form-control" id="wieght" name="wieght" placeholder="Post wieght">{{$post->wieght}}</textarea>
+                     <p>@error('description') @enderror</p>
+                </div>
+               
+                
                 <div class="d-flex justify-content-between" >
 
                     <div class="form-group" >

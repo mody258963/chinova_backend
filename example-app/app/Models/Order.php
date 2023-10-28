@@ -11,11 +11,12 @@ class Order extends Model
 
     protected $fillable = [
         'description',
-        'image',
         'title',
         'price',
         'wieght',
-        'user_id'
+        'user_id',
+        'image',
+
     ];
 
     public function user(){
