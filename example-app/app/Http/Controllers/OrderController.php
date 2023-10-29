@@ -35,10 +35,10 @@ class OrderController extends Controller
         $image = str_replace('public','storage',$image);
         $data['image'] = $image;
         $data['user_id'] = 2;
-        // $user = Auth::user();
-        // // if(!$user){ 
-        // //     return abort(403);
-        // // }
+        $user = Auth::user();
+        if(!$user){ 
+            return abort(403);
+        }
         $post = Order::create($data);
         if($post){
             session()->flash("message","post edited successfully");

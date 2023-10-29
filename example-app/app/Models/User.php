@@ -44,6 +44,6 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
     public function posts(){
-        return $this->hasMany(OrderModel::class);
+        return $this->hasMany(Order::class);
     }
 }
