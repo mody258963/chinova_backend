@@ -12,7 +12,7 @@ class OrderController extends Controller
         $posts = Order::all();
         return view('dashboard.posts.list-posts',[
             'posts' => $posts
-        ]);
+        ]); 
     }
 
     public function create(){
@@ -20,7 +20,7 @@ class OrderController extends Controller
     }
     public function store(Request $request){
 
-     
+
        $data =  $request->validate([
             'description' => 'required|max:1255|min:3|string',
             'title'=> 'required|max:1255|min:3|string',
@@ -36,7 +36,7 @@ class OrderController extends Controller
         $data['image'] = $image;
         $data['user_id'] = 2;
         $user = Auth::user();
-        if(!$user){ 
+        if(!$user){
             return abort(403);
         }
         $post = Order::create($data);
@@ -48,7 +48,7 @@ class OrderController extends Controller
         return redirect()->back()->with('error','This post not created');
     }
 
-    public function edit(Order $post){ 
+    public function edit(Order $post){
         return view('dashboard.posts.edit',[
             'post' => $post,
         ]);
@@ -82,7 +82,7 @@ class OrderController extends Controller
         return redirect()->back()->with('delete','item deleted successfully');
     }
 
-    
+
     }
 
 

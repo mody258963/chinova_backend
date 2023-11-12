@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SocialiteController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
@@ -17,26 +18,48 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
-})->name('dashboard');
-
-Route::get('/posts', [OrderController::class,'index'])->name('posts.index');
-Route::get('/post-edit/{post}',[OrderController::class,'edit'])->name('post.edit');
-Route::get('/posts/create-post',[OrderController::class,'create'])->name('create-post');
-Route::post('/posts/store-post',[OrderController::class,'store'])->name('store.post');
-Route::get('/delete-post/{id}',[OrderController::class,'delete'])->name('delete.post');
-Route::get('/posts/edit/{post}',[OrderController::class,'edit'])->name('edit.post');
-Route::post('/posts/update-post',[OrderController::class,'update'])->name('update.post');
-
-
-Route::prefix('users')->group(function(Router $route){
-    $route->get('/',[OrderController::class,'index'])->name('admin.users.index');
-    $route->get('/create',[OrderController::class,'create'])->name('admin.user.create');
-    $route->post('/store',[OrderController::class,'store'])->name('admin.user.store');
-    $route->get('/edit/{user}',[OrderController::class,'edit'])->name('admin.user.edit');
-    $route->post('/update',[OrderController::class,'update'])->name('admin.user.update');
-    $route->get('/delete/{user}',[OrderController::class,'delete'])->name('admin.user.delete');
+return view('auth.login');
 });
 
-Route::get('/login' , [AuthController::class,'getLoginPage'])->name('get-login-page');
+Route::get('/dashboard', function () {
+    return view('layout.layout');
+    })->name('dashboard');
+
+    Route::prefix('users')->group(function(Router $route) {
+    $route->get('/posts', [OrderController::class,'index'])->name('posts.index');
+    $route->get('/post-edit/{post}',[OrderController::class,'edit'])->name('post.edit');
+    $route->get('/posts/create-post',[OrderController::class,'create'])->name('create-post');
+    $route->post('/posts/store-post',[OrderController::class,'store'])->name('store.post');
+    $route->get('/delete-post/{id}',[OrderController::class,'delete'])->name('delete.post');
+    $route->get('/posts/edit/{post}',[OrderController::class,'edit'])->name('edit.post');
+    $route->post('/posts/update-post',[OrderController::class,'update'])->name('update.post');
+    });
+
+// Route::prefix('users')->group(function(Router $route) {
+
+//     $route->get('/', [OrderController::class,'index'])->name('admin.users.index');
+//     $route->get('/create', [OrderController::class,'create'])->name('admin.user.create');
+//     $route->post('/store', [OrderController::class,'store'])->name('admin.user.store');
+//     $route->get('/edit/{user}', [OrderController::class,'edit'])->name('admin.user.edit');
+//     $route->post('/update', [OrderController::class,'update'])->name('admin.user.update');
+//     $route->get('/delete/{user}', [OrderController::class,'delete'])->name('admin.user.delete');
+// });
+
+
+
 Route::post('/login' , [AuthController::class,'login'])->name('login');
+Route::get('/signup' , [AuthController::class,'regsterPage'])->name('SignUpPage');
+Route::post('/signupuser' , [AuthController::class,'storeUser'])->name('StoreUser');
+Route::get('/loginPage' , [AuthController::class,'getLoginPage'])->name('loginPages');
+
+// Route::controller(AuthController::class)->middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+//     Route::get('/login', 'login')->name('login');
+//     Route::get('/signup', 'regsterPage')->name('signUpPage');
+//     Route::post('/users/add', 'regester')->name('signUp');
+//     Route::get('/users/edit/{id}', 'EditUser')->name('EditUser');
+//     Route::post('/users/update/{id}', 'UpdateUser')->name('UpdateUser');
+//     Route::post('/users/delete/{id}', 'DeleteUser')->name('DeleteUser');
+// });
+
+Route::get('auth/google', [SocialiteController::class,'redirectToGoogle'])->name('google.uri');
+Route::get('auth/google/callback', [SocialiteController::class,'handleGoogleCallback'])->name('google.handel');
