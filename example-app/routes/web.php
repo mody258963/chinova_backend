@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OtpController;
 use App\Http\Controllers\SocialiteController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
@@ -61,5 +62,10 @@ Route::get('/loginPage' , [AuthController::class,'getLoginPage'])->name('loginPa
 //     Route::post('/users/delete/{id}', 'DeleteUser')->name('DeleteUser');
 // });
 
-Route::get('auth/google', [SocialiteController::class,'redirectToGoogle'])->name('google.uri');
-Route::get('auth/google/callback', [SocialiteController::class,'handleGoogleCallback'])->name('google.handel');
+Route::get('/auth/google', [SocialiteController::class,'redirectToGoogle'])->name('google.uri');
+Route::get('/auth/google/callback', [SocialiteController::class,'handleGoogleCallback'])->name('google.handel');
+
+Route::post('/genrateOtp', [OtpController::class,'OtpRequst'])->name('ganerate.Otp');
+Route::post('/veriyOtp', [OtpController::class,'Otp'])->name('verify.Otp');
+Route::get('/OtpPage', [OtpController::class,'OPTPage'])->name('OPT.page');
+Route::get('/OtpVerifyPage', [OtpController::class,'OPTverifyPage'])->name('OPT.verify.page');
