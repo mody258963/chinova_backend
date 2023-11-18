@@ -35,7 +35,7 @@ class OtpController extends Controller
 
                return redirect(route('OPT.verify.page'))->with('success','OTP has been sent');
            } else {
-               return back()->withErrors([
+               return back()->with([
                    'email' => 'Please SignUp first',
                ]);
            }
@@ -46,10 +46,13 @@ class OtpController extends Controller
 
       public function Otp(Request $request){
 
-       if($request->input('otp') == session('otp')){
-              $user = Auth::user();
-              auth()->login($user);
-              return redirect(route('dashboard'));
+        $credentials = $request->validate([
+            'email' => 'required|email',
+        ]);
+
+       if($request->input('otp') == session('otp') && Auth::attempt($credentials , true)){
+      
+              return  redirect(route('dashboard'))->with("success","Welcome Back!");
 
       }
 
