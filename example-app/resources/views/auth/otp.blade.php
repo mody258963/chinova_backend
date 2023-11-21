@@ -27,12 +27,13 @@
 		      	<form action="{{route('ganerate.Otp')}}" method="POST" class="signin-form">
                     @csrf
 		      		<div class="form-group">
-		      			<input type="text" id="email" name="email"class="form-control" placeholder="Username" required>
+		      			<input type="email" id="email" name="email"class="form-control" placeholder="Email" required>
 		      		</div>
-	   
+
 	            <div class="form-group">
 	            	<button type="submit" class="form-control btn btn-primary submit px-3">Send Otp</button>
 	            </div>
+            </form>
 	            <div class="form-group d-md-flex">
 	            	<div class="w-50">
 		            	<label class="checkbox-wrap checkbox-primary">Remember Me
@@ -44,7 +45,6 @@
 									<a href="#" style="color: #fff">Forgot Password</a>
 								</div>
 	            </div>
-	          </form>
 	          <p class="w-100 text-center">&mdash; Or Sign In With &mdash;</p>
 	          <div class="social d-flex text-center">
 	          	<a href="{{route('google.uri')}}" class="px-2 py-2 mr-md-1 rounded"><span class="ion-logo-facebook mr-2"></span> Gmail</a>

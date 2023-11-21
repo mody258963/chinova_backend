@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\SampleMail;
+use App\Models\User;
 use \Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 
 class OtpController extends Controller
 {
@@ -21,11 +23,11 @@ class OtpController extends Controller
        public function OtpRequst(Request $request){
 
           $credentials = $request->validate([
-               'email' => 'required|email',
+               'email' => 'required|email|exists:users,email',
            ]);
            if ($credentials) {
                 $otp = rand(100000, 999999);
-               session(['otp'=> $otp]);
+               session(['otp'=> $otp,'email' => $request->email]);
                $content = [
                 'subject' => 'OTP from Chinova',
                 'body' => $otp,
@@ -44,19 +46,13 @@ class OtpController extends Controller
 
        }
 
-      public function Otp(Request $request){
-
-        $credentials = $request->validate([
-            'email' => 'required|email',
-        ]);
-
-       if($request->input('otp') == session('otp') && Auth::attempt($credentials , true)){
-      
-              return  redirect(route('dashboard'))->with("success","Welcome Back!");
-
-      }
-
-
-
+    public function Otp(Request $request){
+            if($request->input('otp') == session('otp')){
+                $user = User::where('email' , session('email'))->first();
+                $request->session()->regenerate();
+                Auth::login($user);
+                return  redirect(route('dashboard'))->with("success","Welcome Back!");
+            }
+    }
 }
-}
+// otp table (otp, email ,  expire)
