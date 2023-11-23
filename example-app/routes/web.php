@@ -23,7 +23,7 @@ return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
-    return view('layout.layout');
+    return view('layout.dashboard');
     })->name('dashboard');
 
     Route::prefix('users')->group(function(Router $route) {
